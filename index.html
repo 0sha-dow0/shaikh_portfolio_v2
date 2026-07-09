@@ -432,6 +432,66 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:24p
       </div>
     </div>
 
+    <!-- CASCAIDE -->
+    <div class="proj-card rv">
+      <div class="proj-thumb">
+        <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="360" fill="#080b12"/>
+          <!-- incident banner -->
+          <rect x="0" y="0" width="640" height="40" fill="#0b0e18"/><line x1="0" y1="40" x2="640" y2="40" stroke="#141926"/>
+          <circle cx="24" cy="20" r="4" fill="#ff5f57" class="blinkc"/>
+          <text x="40" y="24" font-family="Space Mono,monospace" font-size="10" fill="#e6e8ee" letter-spacing=".12em">CASCAIDE · INCIDENT CVE-2026-1337 — axios@1.6.x</text>
+          <text x="616" y="24" font-family="Space Mono,monospace" font-size="9" fill="#ffaa44" text-anchor="end">MITIGATION: TRANSPLANT</text>
+          <!-- impact graph (left) -->
+          <rect x="24" y="56" width="280" height="200" fill="#0b0e18" stroke="#141926"/>
+          <text x="38" y="78" font-family="Space Mono,monospace" font-size="8" fill="#414a5e" letter-spacing=".15em">IMPACT GRAPH</text>
+          <!-- edges -->
+          <g stroke="#2a3247" stroke-width="1">
+            <line x1="80" y1="120" x2="160" y2="100"/><line x1="80" y1="120" x2="160" y2="150"/><line x1="80" y1="120" x2="160" y2="200"/>
+            <line x1="160" y1="100" x2="248" y2="92"/><line x1="160" y1="150" x2="248" y2="140"/><line x1="160" y1="150" x2="248" y2="170"/><line x1="160" y1="200" x2="248" y2="214"/>
+          </g>
+          <line class="dashline" x1="160" y1="200" x2="248" y2="214" stroke="#ff5f57" stroke-width="1.2" opacity=".8"/>
+          <!-- nodes -->
+          <circle cx="80" cy="120" r="10" fill="#ff5f57"/><circle class="pingc" cx="80" cy="120" r="12" fill="none" stroke="#ff5f57"/>
+          <text x="80" y="145" font-family="Space Mono,monospace" font-size="8" fill="#ff5f57" text-anchor="middle">axios</text>
+          <g fill="#00aaff"><circle cx="160" cy="100" r="5"/><circle cx="160" cy="150" r="5"/><circle cx="160" cy="200" r="5"/></g>
+          <text x="160" y="230" font-family="Space Mono,monospace" font-size="7" fill="#414a5e" text-anchor="middle">files</text>
+          <g fill="#00ff88"><circle cx="248" cy="92" r="4"/><circle cx="248" cy="140" r="4"/><circle cx="248" cy="170" r="4"/></g>
+          <circle cx="248" cy="214" r="4" fill="#ffaa44"/>
+          <text x="262" y="218" font-family="Space Mono,monospace" font-size="7" fill="#ffaa44">aliased ⚠</text>
+          <text x="248" y="248" font-family="Space Mono,monospace" font-size="7" fill="#414a5e" text-anchor="middle">call sites</text>
+          <!-- pipeline (right) -->
+          <rect x="320" y="56" width="296" height="200" fill="#0b0e18" stroke="#141926"/>
+          <text x="334" y="78" font-family="Space Mono,monospace" font-size="8" fill="#414a5e" letter-spacing=".15em">TRANSPLANT PIPELINE · SSE LIVE</text>
+          <g font-family="Space Mono,monospace" font-size="9">
+            <text x="334" y="102" fill="#00ff88">✓ RECALL</text><text x="470" y="102" fill="#414a5e">call sites gathered</text>
+            <text x="334" y="126" fill="#00ff88">✓ REWRITE</text><text x="470" y="126" fill="#414a5e">axios → fetch wrapper</text>
+            <text x="334" y="150" fill="#00ff88">✓ VALIDATE</text><text x="470" y="150" fill="#414a5e">build + tests pass</text>
+            <text x="334" y="174" fill="#ffaa44">▶ VERIFY</text>
+          </g>
+          <rect x="470" y="165" width="130" height="8" fill="#141926"/><rect class="wbar" x="470" y="165" width="86" height="8" fill="#ffaa44" opacity=".85" style="animation-delay:.5s"/>
+          <g font-family="Space Mono,monospace" font-size="9">
+            <text x="334" y="200" fill="#aeb2c2">JUDGES</text>
+            <text x="470" y="200" fill="#00ff88">APPROVE · APPROVE</text><text x="470" y="216" fill="#ffaa44">1 PENDING</text>
+          </g>
+          <text x="334" y="242" font-family="Space Mono,monospace" font-size="8" fill="#00ff88">behavior diff: 0 regressions</text>
+          <!-- diff strip -->
+          <rect x="24" y="272" width="592" height="66" fill="#0b0e18" stroke="#141926"/>
+          <rect x="24" y="272" width="592" height="22" fill="rgba(255,95,87,.08)"/>
+          <text x="38" y="287" font-family="Space Mono,monospace" font-size="9" fill="#ff5f57">-  const res = await axios.get(url, { headers })</text>
+          <rect x="24" y="294" width="592" height="22" fill="rgba(0,255,136,.07)"/>
+          <text x="38" y="309" font-family="Space Mono,monospace" font-size="9" fill="#00ff88">+  const res = await httpGet(url, { headers })   // fetch wrapper · behavior-preserving</text>
+          <text x="38" y="330" font-family="Space Mono,monospace" font-size="8" fill="#414a5e">12 call sites patched · sandboxed build/test ✓ · multi-judge review</text>
+        </svg>
+      </div>
+      <div class="proj-body">
+        <div class="proj-label">2026 · AI × Supply-Chain Security · Autonomous Pipeline</div>
+        <div class="proj-name"><a href="https://github.com/0sha-dow0/cascAIde" target="_blank" rel="noopener">cascAIde</a></div>
+        <p class="proj-desc">A dependency transplant engine for vulnerable packages. Scans a GitHub repo into a dependency + call-site impact graph (catching aliased imports grep misses), fires a mock CVE incident, then autonomously rewrites axios call sites to a behavior-preserving fetch wrapper — verified by sandboxed build/test checks, behavioral comparison, and a multi-judge LLM review with live SSE pipeline streaming. Ports-and-adapters architecture runs fully offline on fake adapters.</p>
+        <div class="proj-tags"><span class="proj-tag">Python 3.14 · FastAPI</span><span class="proj-tag">React 18 · TS</span><span class="proj-tag">SSE</span><span class="proj-tag">Hexagonal Architecture</span><span class="proj-tag">Multi-Judge LLM</span><span class="proj-tag">Docker</span></div>
+      </div>
+    </div>
+
     <!-- CLAUDE PLUGINS -->
     <div class="proj-card rv">
       <div class="proj-thumb">
