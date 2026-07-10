@@ -143,10 +143,14 @@ section{position:relative;z-index:1;padding:110px 48px;max-width:1280px;margin:0
 .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
 @media(max-width:860px){.proj-grid{grid-template-columns:1fr}}
 .proj-card{position:relative;cursor:pointer;border:1px solid var(--border);background:var(--card);overflow:hidden;transition:border-color .3s,transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+/* hover effects only on real-pointer devices — on touch screens hover styles
+   swallow the first tap and force a double-tap to follow the link */
+@media(hover:hover){
 .proj-card:hover{border-color:var(--accent);transform:translateY(-5px);box-shadow:0 24px 48px rgba(0,0,0,.4)}
+.proj-card:hover .proj-name a{color:var(--accent)}
+}
 /* stretched link — whole card is clickable */
 .proj-name a::after{content:'';position:absolute;inset:0;z-index:1}
-.proj-card:hover .proj-name a{color:var(--accent)}
 .proj-name a:focus-visible::after{outline:2px solid var(--accent);outline-offset:-2px}
 .proj-thumb{width:100%;aspect-ratio:16/9;overflow:hidden;position:relative;border-bottom:1px solid var(--border)}
 .proj-thumb svg{width:100%;height:100%;display:block}
@@ -239,7 +243,7 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:24p
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
     <a href="#contact">Contact</a>
-    <a href="mailto:skshaikh@ucdavis.edu" class="nav-cta">Hire Me</a>
+    <a href="mailto:shaikhshadab.hossain@gmail.com" class="nav-cta">Hire Me</a>
   </div>
   <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
@@ -249,7 +253,7 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:24p
   <a href="#projects" onclick="closeMobile()">Projects</a>
   <a href="#skills" onclick="closeMobile()">Skills</a>
   <a href="#contact" onclick="closeMobile()">Contact</a>
-  <a href="mailto:skshaikh@ucdavis.edu" style="color:var(--accent)">Hire Me</a>
+  <a href="mailto:shaikhshadab.hossain@gmail.com" style="color:var(--accent)">Hire Me</a>
 </div>
 
 <!-- HERO -->
@@ -713,7 +717,7 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:24p
     <h2 class="contact-head rv">LET'S<br><span>BUILD.</span></h2>
     <p class="contact-sub rv">// Open to backend &amp; SDE roles · New grad Jun 2026 · Will relocate</p>
     <div class="contact-links rv">
-      <a href="mailto:skshaikh@ucdavis.edu" class="c-link">skshaikh@ucdavis.edu</a>
+      <a href="mailto:shaikhshadab.hossain@gmail.com" class="c-link">shaikhshadab.hossain@gmail.com</a>
       <a href="https://linkedin.com/in/shaikhshadabhossain" target="_blank" rel="noopener" class="c-link">LinkedIn</a>
       <a href="https://github.com/0sha-dow0" target="_blank" rel="noopener" class="c-link">GitHub</a>
       <a href="tel:+15302312904" class="c-link">+1 (530) 231-2904</a>
