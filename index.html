@@ -771,6 +771,7 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:24p
           <input id="cf-email" name="email" type="email" placeholder="your.email@company.com" required maxlength="120">
           <label for="cf-msg">Message</label>
           <textarea id="cf-msg" name="message" placeholder="Tell me about the role, the system, or the problem you're scaling..." required maxlength="3000"></textarea>
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
           <button type="submit" id="cf-send">Send Message →</button>
           <div class="cform-status mono" id="cf-status" role="status" aria-live="polite"></div>
         </form>
@@ -907,18 +908,21 @@ cf.addEventListener('submit',async e=>{
   cfSend.disabled=true;cfSend.textContent='Sending…';
   cfStatus.className='cform-status mono';cfStatus.textContent='> POST /message · awaiting ack…';
   try{
-    const res=await fetch('https://formsubmit.co/ajax/shaikhshadab.hossain@gmail.com',{
+    const res=await fetch('https://api.web3forms.com/submit',{
       method:'POST',
       headers:{'Content-Type':'application/json','Accept':'application/json'},
       body:JSON.stringify({
+        access_key:'9a1b343d-f256-44fd-b4b1-61449091fd56',
         name:cf.name.value.trim(),
         email:cf.email.value.trim(),
         message:cf.message.value.trim(),
-        _subject:'Portfolio message from '+cf.name.value.trim(),
-        _template:'table'
+        subject:'Portfolio message from '+cf.name.value.trim(),
+        botcheck:cf.botcheck.checked,
+        from_name:'Portfolio Contact Form'
       })
     });
-    if(!res.ok)throw new Error('HTTP '+res.status);
+    const data=await res.json();
+    if(!res.ok||!data.success)throw new Error(data.message||('HTTP '+res.status));
     cfStatus.classList.add('ok');
     cfStatus.textContent='✓ 200 OK — message delivered. I usually reply the same day.';
     cf.reset();
