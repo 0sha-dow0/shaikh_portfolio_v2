@@ -211,6 +211,25 @@ section{position:relative;z-index:1;padding:110px 48px;max-width:1280px;margin:0
 .contact-head{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(48px,8vw,96px);text-align:center;line-height:.95;letter-spacing:-.03em}
 .contact-head span{-webkit-text-stroke:2px var(--accent);color:transparent}
 .contact-sub{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--muted);text-align:center;margin:20px 0 40px}
+/* contact form */
+.cform-wrap{max-width:640px;margin:0 auto 56px;border:1px solid var(--border);background:rgba(11,14,24,.85);backdrop-filter:blur(6px);box-shadow:0 24px 64px rgba(0,0,0,.45)}
+.cform-inner{padding:36px}
+@media(max-width:600px){.cform-inner{padding:24px 18px}}
+.cform-head{display:flex;gap:18px;align-items:center;margin-bottom:26px}
+.cform-title{font-family:'Syne',sans-serif;font-weight:800;font-size:24px;letter-spacing:-.01em}
+.cform-tag{font-size:13.5px;color:var(--white-dim);line-height:1.55;margin-top:4px}
+#contactForm label{display:block;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin:20px 0 8px}
+#contactForm input,#contactForm textarea{width:100%;background:var(--black);border:1px solid var(--border);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;font-size:14.5px;padding:13px 15px;outline:none;transition:border-color .3s,box-shadow .3s;border-radius:0}
+#contactForm input::placeholder,#contactForm textarea::placeholder{color:var(--muted)}
+#contactForm input:focus,#contactForm textarea:focus{border-color:var(--accent);box-shadow:0 0 0 1px rgba(0,255,136,.25),0 0 24px rgba(0,255,136,.06)}
+#contactForm textarea{min-height:130px;resize:vertical}
+#cf-send{width:100%;margin-top:26px;background:var(--accent);color:var(--black);border:none;cursor:pointer;font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:15px 28px;transition:box-shadow .3s,transform .3s,opacity .3s}
+@media(hover:hover){#cf-send:hover{box-shadow:0 0 30px rgba(0,255,136,.3);transform:translateY(-2px)}}
+#cf-send:disabled{opacity:.55;cursor:wait;transform:none}
+.cform-status{min-height:20px;margin-top:14px;font-size:11px;letter-spacing:.08em;text-align:center;color:var(--muted)}
+.cform-status.ok{color:var(--accent)}
+.cform-status.err{color:#ff5f57}
+.cform-status a{color:var(--accent)}
 .contact-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
 .c-link{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;color:var(--white-dim);text-decoration:none;padding:10px 20px;border:1px solid var(--border);transition:all .3s}
 .c-link:hover{border-color:var(--accent);color:var(--accent)}
@@ -716,6 +735,48 @@ footer{display:flex;justify-content:space-between;align-items:center;padding:24p
     <div class="contact-status rv"><span class="pin"></span> STATUS: AVAILABLE JUN 2026</div>
     <h2 class="contact-head rv">LET'S<br><span>BUILD.</span></h2>
     <p class="contact-sub rv">// Open to backend &amp; SDE roles · New grad Jun 2026 · Will relocate</p>
+
+    <!-- CONTACT FORM -->
+    <div class="cform-wrap rv">
+      <div class="term-bar">
+        <span class="term-dot" style="background:#ff5f57"></span>
+        <span class="term-dot" style="background:#febc2e"></span>
+        <span class="term-dot" style="background:#28c840"></span>
+        <span class="term-title">$ send-message --to shadab</span>
+      </div>
+      <div class="cform-inner">
+        <div class="cform-head">
+          <svg class="cform-bot floaty" viewBox="0 0 48 56" width="44" height="52" aria-hidden="true">
+            <line x1="24" y1="8" x2="24" y2="2" stroke="#00ff88" stroke-width="2"/>
+            <circle cx="24" cy="2" r="2" fill="#00ff88"/>
+            <rect x="10" y="8" width="28" height="20" rx="4" fill="#00ff88"/>
+            <circle cx="18" cy="17" r="3" fill="#05070d"/>
+            <circle cx="30" cy="17" r="3" fill="#05070d"/>
+            <rect x="14" y="32" width="20" height="16" rx="3" fill="#00cc6f"/>
+            <rect x="19" y="36" width="10" height="7" rx="2" fill="#05070d" opacity=".55"/>
+            <rect x="8" y="33" width="4" height="11" rx="2" fill="#00ff88"/>
+            <rect x="36" y="33" width="4" height="11" rx="2" fill="#00ff88"/>
+            <rect x="17" y="50" width="4" height="6" rx="2" fill="#00ff88"/>
+            <rect x="27" y="50" width="4" height="6" rx="2" fill="#00ff88"/>
+          </svg>
+          <div>
+            <div class="cform-title">Ping My Inbox</div>
+            <div class="cform-tag">Hiring, collaborating, or scaling a backend? Payload below — P95 response time: same day.</div>
+          </div>
+        </div>
+        <form id="contactForm" autocomplete="on">
+          <label for="cf-name">Name</label>
+          <input id="cf-name" name="name" type="text" placeholder="Enter your full name" required maxlength="100">
+          <label for="cf-email">Email</label>
+          <input id="cf-email" name="email" type="email" placeholder="your.email@company.com" required maxlength="120">
+          <label for="cf-msg">Message</label>
+          <textarea id="cf-msg" name="message" placeholder="Tell me about the role, the system, or the problem you're scaling..." required maxlength="3000"></textarea>
+          <button type="submit" id="cf-send">Send Message →</button>
+          <div class="cform-status mono" id="cf-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+
     <div class="contact-links rv">
       <a href="mailto:shaikhshadab.hossain@gmail.com" class="c-link">shaikhshadab.hossain@gmail.com</a>
       <a href="https://linkedin.com/in/shaikhshadabhossain" target="_blank" rel="noopener" class="c-link">LinkedIn</a>
@@ -838,6 +899,37 @@ ScrollTrigger.create({trigger:'#stats',start:'top 85%',once:true,onEnter:()=>{
     gsap.to(o,{v:target,duration:1.6,ease:'power2.out',onUpdate:()=>{n.textContent=prefix+Math.round(o.v)+suffix}});
   });
 }});
+
+// ── CONTACT FORM (FormSubmit AJAX, no backend needed) ──
+const cf=document.getElementById('contactForm'),cfStatus=document.getElementById('cf-status'),cfSend=document.getElementById('cf-send');
+cf.addEventListener('submit',async e=>{
+  e.preventDefault();
+  cfSend.disabled=true;cfSend.textContent='Sending…';
+  cfStatus.className='cform-status mono';cfStatus.textContent='> POST /message · awaiting ack…';
+  try{
+    const res=await fetch('https://formsubmit.co/ajax/shaikhshadab.hossain@gmail.com',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        name:cf.name.value.trim(),
+        email:cf.email.value.trim(),
+        message:cf.message.value.trim(),
+        _subject:'Portfolio message from '+cf.name.value.trim(),
+        _template:'table'
+      })
+    });
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    cfStatus.classList.add('ok');
+    cfStatus.textContent='✓ 200 OK — message delivered. I usually reply the same day.';
+    cf.reset();
+    cfSend.textContent='Sent ✓';
+    setTimeout(()=>{cfSend.disabled=false;cfSend.textContent='Send Message →'},4000);
+  }catch(err){
+    cfStatus.classList.add('err');
+    cfStatus.innerHTML='✗ delivery failed — <a href="mailto:shaikhshadab.hossain@gmail.com">email me directly</a> instead.';
+    cfSend.disabled=false;cfSend.textContent='Send Message →';
+  }
+});
 
 // ── NAV SCROLL HIGHLIGHT ──
 const secs=document.querySelectorAll('section[id], div[id].sys-wrap, div[id].contact-section');
