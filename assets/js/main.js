@@ -103,29 +103,7 @@
     photo.src = src;
   }
 
-  /* ── 6. Resume link: falls back to email if the PDF is not added yet
-     Checked on click only, so the page never 404s on load. */
-  var resume = document.getElementById('resumeBtn');
-  if (resume && location.protocol.indexOf('http') === 0) {
-    var mailto = 'mailto:shaikhshadab.hossain@gmail.com?subject=Resume%20request';
-    resume.addEventListener('click', function (e) {
-      if (resume.dataset.checked) return;
-      e.preventDefault();
-      fetch(resume.getAttribute('href'), { method: 'HEAD' })
-        .then(function (r) {
-          resume.dataset.checked = '1';
-          if (r.status === 404) {
-            resume.setAttribute('href', mailto);
-            resume.removeAttribute('download');
-            resume.setAttribute('title', 'Request the résumé by email');
-          }
-          resume.click();
-        })
-        .catch(function () { resume.dataset.checked = '1'; resume.click(); });
-    });
-  }
-
-  /* ── 7. Contact form (Web3Forms, unchanged endpoint + key) ──── */
+  /* ── 6. Contact form (Web3Forms, unchanged endpoint + key) ──── */
   var cf = document.getElementById('contactForm');
   if (cf) {
     var cfStatus = document.getElementById('cf-status');

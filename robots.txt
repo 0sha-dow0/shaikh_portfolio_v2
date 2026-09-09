@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shaikh-portfolio-v2.onrender.com/sitemap.xml

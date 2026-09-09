@@ -1,0 +1,14 @@
+# Shadab Hossain Shaikh
+
+> Backend engineer specializing in distributed systems, high-throughput APIs, event-driven pipelines, and LLM infrastructure.
+
+## Primary page
+
+- [Portfolio](https://shaikh-portfolio-v2.onrender.com/): Experience, projects, systems work, technical skills, publications, education, and contact details.
+
+## Profiles
+
+- [GitHub](https://github.com/0sha-dow0)
+- [LinkedIn](https://linkedin.com/in/shaikhshadabhossain)
+
+This is the canonical portfolio for Shadab Hossain Shaikh. The GitHub Pages deployment is a mirror.
