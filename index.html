@@ -23,7 +23,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <script>
-  if (window.location.hostname === 'shaikh-portfolio-v2.onrender.com') {
+  if (window.location.protocol.indexOf('http') === 0 && !/^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)) {
     window.dataLayer = window.dataLayer || [];
     window.gtag = function(){dataLayer.push(arguments);};
     window.gtag('js', new Date());
